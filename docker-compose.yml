@@ -1,0 +1,29 @@
+version: '2'
+services:
+  go:
+    environment:
+      DB_DRIVER: mysql
+      DB_URI: "root:@tcp(db:3306)/"
+      DB_NAME: "logs"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    tty: true
+    working_dir: /go/src/lendme/golang-seeder-backend
+    image: golang:1.13
+    ports:
+      - 7070:80
+    volumes:
+      - ./:/go/src/lendme/golang-seeder-backend
+  db:
+    image: mariadb:10.2
+    ports:
+      - 3306:3306
+    environment:
+       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+       MYSQL_DATABASE: 'default'
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+volumes:
+  cached:
