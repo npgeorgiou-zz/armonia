@@ -39,3 +39,9 @@ project/
         ├── di.go       
         └── services/   Services the Di holds so Business Cases can do low-level stuff.
 ```
+
+# How to see it work:
+- Clone repo
+- ```docker-compose up``` to fire up the containers
+- ```docker-compose exec go bash``` to log in the project container
+- ```go test``` to run the tests
